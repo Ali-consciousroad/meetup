@@ -1,6 +1,10 @@
+import { useHistory } from 'react-router';
 import NewMeetupForm from '../components/meetups/NewMeetupForm';
 
 function NewMeetupPage(){
+    // useHistory hook object
+    const history = useHistory();
+
     function addMeetupHandler(meetupData) {
         // Use the fetch() function to do a POST HTTP request to our Firebase API
         // Modify the URL to create a meetups table when the request is done (.json is required by firebase)
@@ -13,7 +17,9 @@ function NewMeetupPage(){
                     'Content-Type': 'application/json'
                 }
             }
-        );
+        ).then(() => {
+            history.replace('/');
+        });
     }
 
     return (
